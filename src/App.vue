@@ -1,14 +1,16 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-
-</script>
-
 <template>
-
-
-  <RouterView />
+  <Categories/>
+  <Promotions/>
 </template>
 
-<style scoped>
+<script>
 
-</style>
+import Categories from "./components/Categories.vue";
+import Promotions from "./components/Promotions.vue";
+export default {
+  components: {
+    Categories,
+    Promotions
+  },
+};
+</script>
