@@ -1,8 +1,8 @@
 <template>
   <div :style="{ backgroundColor: color }" class="container">
     <img :src="image" alt="" />
-    <h3>{{ text }}</h3>
-    <CardButton id="button" :buttonColor="buttonColor" />
+    <h3>{{ title }}</h3>
+    <CardButton @click="shopNow()" id="button" :buttonColor="buttonColor" />
   </div>
 </template>
 
@@ -14,11 +14,18 @@ export default {
   },
 
   props: {
-    text: String,
+    title: String,
     image: String,
     color: String,
     buttonColor: String,
   },
+
+  methods: {
+    shopNow() {
+      alert("Let's shop: " + this.title);
+    },
+  },
+
 };
 </script>
 
@@ -62,7 +69,7 @@ export default {
   left: -30%;
 }
 
-#button :hover{
+#button :hover {
   cursor: pointer;
 }
 </style>

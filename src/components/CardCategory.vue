@@ -1,12 +1,12 @@
 <template>
   <div class="card-container">
-    <div :style="{ backgroundColor: Color }" class="card">
+    <div :style="{ backgroundColor: color }" class="card">
       <div class="image-container">
-        <img :src="Image" alt="" />
+        <img :src="image" alt="" />
       </div>
-      <h2>{{ Name }}</h2>
+      <h2>{{ name }}</h2>
       <p>
-        <span>{{ Number }}</span>
+        <span>{{ productCount }}</span>
         items
       </p>
     </div>
@@ -16,10 +16,10 @@
 <script>
 export default {
   props: {
-    Image: String,
-    Name: String,
-    Number: Number,
-    Color: String,
+    image: String,
+    name: String,
+    productCount: Number,
+    color: String,
   },
 };
 </script>

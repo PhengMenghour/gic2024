@@ -9,6 +9,7 @@ export default {
   props: {
     buttonColor: String,
   },
+
 };
 </script>
 
@@ -17,7 +18,7 @@ button {
   font-size: 12px;
   font-family: "Quicksand";
   color: white;
-  width: 110px;
+  width: 6.785em;
   height: 31px;
   border-radius: 5px;
   border-style: none;
@@ -26,5 +27,4 @@ button {
   align-items: center;
   cursor: pointer;
 }
-
 </style>
