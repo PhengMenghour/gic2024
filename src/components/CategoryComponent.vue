@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style scoped>
-
 .card-container {
   transition: transform 0.3s ease;
 }
@@ -47,9 +46,8 @@ export default {
   flex-direction: column;
 }
 
-
-.card :hover{
-    border-color: black;
+.card :hover {
+  border-color: black;
 }
 
 .image-container {

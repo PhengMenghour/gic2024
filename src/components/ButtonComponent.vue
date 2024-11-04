@@ -9,7 +9,6 @@ export default {
   props: {
     buttonColor: String,
   },
-
 };
 </script>
 

@@ -2,15 +2,19 @@
   <div :style="{ backgroundColor: color }" class="container">
     <img :src="image" alt="" />
     <h3>{{ title }}</h3>
-    <CardButton @click="shopNow()" id="button" :buttonColor="buttonColor" />
+    <ButtonComponent
+      @click="shopNow()"
+      id="button"
+      :buttonColor="buttonColor"
+    />
   </div>
 </template>
 
 <script>
-import CardButton from "./CardButton.vue";
+import ButtonComponent from "./ButtonComponent.vue";
 export default {
   components: {
-    CardButton,
+    ButtonComponent,
   },
 
   props: {
@@ -25,7 +29,6 @@ export default {
       alert("Let's shop: " + this.title);
     },
   },
-
 };
 </script>
 
@@ -37,8 +40,6 @@ export default {
   margin: 10px;
   position: relative;
   display: flex;
-  /* justify-content: space-between;
-    align-items: center; */
 }
 
 .container img {
@@ -64,9 +65,10 @@ export default {
 }
 
 #button {
-  position: relative;
-  top: 60%;
-  left: -30%;
+  position: absolute;
+  bottom: 25%;
+  left: 18%;
+  transform: translateX(-50%);
 }
 
 #button :hover {
