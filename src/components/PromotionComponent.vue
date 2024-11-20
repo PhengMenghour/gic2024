@@ -1,6 +1,6 @@
 <template>
   <div :style="{ backgroundColor: color }" class="container">
-    <img :src="image" alt="" />
+    <img :src="'http://localhost:3000/'+ image" alt="" />
     <h3>{{ title }}</h3>
     <ButtonComponent
       @click="shopNow()"

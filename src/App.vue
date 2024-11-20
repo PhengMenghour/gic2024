@@ -27,6 +27,8 @@ import PromotionComponent from "./components/PromotionComponent.vue";
 import ButtonComponent from "./components/ButtonComponent.vue";
 
 import axios from "axios";
+import { useProductStore } from "./stores/Product";
+import { mapState } from "pinia";
 
 export default {
   components: {
@@ -37,6 +39,8 @@ export default {
 
   data() {
     return {
+      currentGroupname: 'Group A'
+
       /*
       categories: [
         {
@@ -135,36 +139,32 @@ export default {
         },
       ],
       */
-
-      categories: [],
-      promotions: [],
     };
   },
 
   methods: {
-    async fetchCategories() {
-      // Axios call goes here
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/categories"
-        );
-        this.categories = response.data;
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    },
-
-    async fetchPromotions() {
-      // Axios call goes here
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/promotions"
-        );
-        this.promotions = response.data;
-      } catch (error) {
-        console.error("Error fetching promotions:", error);
-      }
-    },
+    // async fetchCategories() {
+    //   // Axios call goes here
+    //   try {
+    //     const response = await axios.get(
+    //       "http://localhost:3000/api/categories"
+    //     );
+    //     this.categories = response.data;
+    //   } catch (error) {
+    //     console.error("Error fetching categories:", error);
+    //   }
+    // },
+    // async fetchPromotions() {
+    //   // Axios call goes here
+    //   try {
+    //     const response = await axios.get(
+    //       "http://localhost:3000/api/promotions"
+    //     );
+    //     this.promotions = response.data;
+    //   } catch (error) {
+    //     console.error("Error fetching promotions:", error);
+    //   }
+    // },
   },
 
   /*
@@ -184,8 +184,45 @@ export default {
   mounted() {
     // Mounted life cycle - It will be executed every time
     // This component is loaded
-    this.fetchCategories();
-    this.fetchPromotions();
+    // this.fetchCategories();
+    // this.fetchPromotions();
+
+    const productStore = useProductStore();
+    productStore.fetchCategories();
+    productStore.fetchPromotions();
+  },
+
+  computed: {
+    // Map state and getters from the Pinia store
+    ...mapState(useProductStore, {
+      // Map the getter getPopularPRoduct to popularProducts
+      popularProducts: "getPopularProduct",
+
+      // Dynamically call getCategoriesByGroup with currentGroupName
+      categories(store) {
+        return store.getCategoriesByGroup(this.currentGroupname);
+      },
+
+      // Dynamically call getProductsByGroup with currentGroupName
+      productsByGroup(store) {
+        return store.getProductsByGroup(this.currentGroupname);
+      },
+
+      // 
+
+      getProductsByCategory(store){
+        return store.getProductsByCategory;
+      },
+
+      // Get all products directly from the state
+      allProducts(store) {
+        return store.products;
+      },
+
+      promotions(store){
+        return store.promotions;
+      }
+    }),
   },
 };
 </script>

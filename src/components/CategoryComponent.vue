@@ -2,7 +2,7 @@
   <div class="card-container">
     <div :style="{ backgroundColor: color }" class="card">
       <div class="image-container">
-        <img :src="image" alt="" />
+        <img :src="'http://localhost:3000/'+image" alt="" />
       </div>
       <h2>{{ name }}</h2>
       <p>
