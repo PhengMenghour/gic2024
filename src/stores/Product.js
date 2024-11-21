@@ -11,30 +11,58 @@ export const useProductStore = defineStore("product", {
 
   getters: {
     // getCategoriesByGroup(groupName): List all categories by group name
-    getCategoriesByGroup: (state) => (groupName) => {
-      return state.categories.filter(
-        (category) => category.groupName === groupName
-      );
+    getCategoriesByGroup: (state) => {
+      return (groupName) =>
+        state.categories.filter((category) => category.group === groupName);
     },
+
+    /*
+      getCategoriesByGroup: (state) => (groupName) => {
+        return state.categories.filter(
+          (category) => category.groupName === groupName
+        );
+      },
+    */
 
     // getProductsByGroup(groupName): List all products by group name
-    getProductsByGroup: (state) => (groupName) => {
-      return state.products.filter(
-        (product) => product.groupName === groupName
-      );
+    getProductsByGroup: (state) => {
+      return (groupName) =>
+        state.products.filter((product) => product.group === groupName);
     },
+
+    /*
+      getProductsByGroup: (state) => (groupName) => {
+        return state.products.filter(
+          (product) => product.groupName === groupName
+        );
+      },
+    */
 
     // getProductsByCategory(categoryId): List all products by given categoryId
-    getProductsByCategory: (state) => (categoryId) => {
-      return state.products.filter(
-        (product) => product.categoryId === categoryId
-      );
+    getProductsByCategory: (state) => {
+      return (categoryId) =>
+        state.products.filter((product) => product.categoryId === categoryId);
     },
 
+    /*
+      getProductsByCategory: (state) => (categoryId) => {
+        return state.products.filter(
+          (product) => product.categoryId === categoryId
+        );
+      },
+    */
+
     // getPopularProducts(): Any product with countSold > 10 is considered popular
-    getPopularProduct: (state) => {
-      return state.products.filter((product) => product.countSold > 10);
-    },
+  getPopularProducts: (state) => {
+    const popular = () => state.products.filter((product) => product.countSold > 10);
+    return popular;
+  }
+
+    /*
+      getPopularProduct: (state) => {
+        return state.products.filter((product) => product.countSold > 10);
+      },
+    */
   },
 
   actions: {
@@ -60,16 +88,14 @@ export const useProductStore = defineStore("product", {
       }
     },
 
-    async fetchProducts(){
-        // Axios call goes here
-        try {
-            const response = await axios.get(
-                "http://localhost:3000/api/products"
-            );
-            this.products = response.data;
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        }
+    async fetchProducts() {
+      // Axios call goes here
+      try {
+        const response = await axios.get("http://localhost:3000/api/products");
+        this.products = response.data;
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     },
 
     async fetchPromotions() {
