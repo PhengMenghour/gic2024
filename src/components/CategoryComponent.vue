@@ -1,16 +1,18 @@
 <template>
-  <div class="card-container">
-    <div :style="{ backgroundColor: color }" class="card">
-      <div class="image-container">
-        <img :src="'http://localhost:3000/'+image" alt="" />
+  <router-link :to="`/categories/${categoryId}`" class="card-link">
+    <div class="card-container">
+      <div :style="{ backgroundColor: color }" class="card">
+        <div class="image-container">
+          <img :src="'http://localhost:3000/' + image" alt="" />
+        </div>
+        <h2>{{ name }}</h2>
+        <p>
+          <span>{{ productCount }}</span>
+          items
+        </p>
       </div>
-      <h2>{{ name }}</h2>
-      <p>
-        <span>{{ productCount }}</span>
-        items
-      </p>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -25,12 +27,19 @@ export default {
 </script>
 
 <style scoped>
+
+.card-link {
+  text-decoration: none; /* Remove underline for links */
+  color: inherit; /* Ensure text color stays the same */
+}
+
 .card-container {
   transition: transform 0.3s ease;
 }
 
 .card-container:hover {
-  transform: scale(1.1); /* Adjust the scale as needed */
+  transform: scale(1.1);
+  /* Adjust the scale as needed */
   border: 5px;
   border-color: black;
 }

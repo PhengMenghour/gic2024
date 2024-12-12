@@ -1,57 +1,46 @@
 <template>
-  <div class="container">
-    <div
-      v-if="badgeText"
-      class="badge"
-      :style="{ backgroundColor: badgeColor }"
-    >
-      {{ badgeText }}
-    </div>
-    <img
-      class="product-image"
-      :src="'http://localhost:3000/' + parsedImages[0]"
-      alt=""
-    />
-    <div class="product-info">
-      <h3 class="brand">Hodo Foods</h3>
-      <p class="product-name">{{ name }}</p>
-      <div class="rating">
-        <span v-for="n in Math.round(rating)" :key="n">
-          <i class="ri-star-fill star-icon"></i>
-        </span>
-        <span class="rating-value">({{ rating }}.00)</span>
+  <router-link :to="`/products/${productId}`" class="product-link">
+    <div class="container">
+      <div v-if="badgeText" class="badge" :style="{ backgroundColor: badgeColor }">
+        {{ badgeText }}
       </div>
-      <p class="weight">{{ size }}</p>
-      <div class="price-container">
-        <div class="price">
-          <span class="current-price">$ {{ price }}</span>
-          <span v-if="promotionAsPercentage > 0" class="old-price"
-            >$ {{ oldPrice.toFixed(2) }}</span
-          >
+      <img class="product-image" :src="'http://localhost:3000/' + parsedImages[0]" alt="" />
+      <div class="product-info">
+        <h3 class="brand">Hodo Foods</h3>
+        <p class="product-name">{{ name }}</p>
+        <div class="rating">
+          <span v-for="n in Math.round(rating)" :key="n">
+            <i class="ri-star-fill star-icon"></i>
+          </span>
+          <span class="rating-value">({{ rating }}.00)</span>
         </div>
-        <div class="button-container">
-          <button
-            v-if="!showQuantitySelector"
-            @click="toggleQuantitySelector"
-            class="add-button"
-          >
-            Add +
-          </button>
-          <div v-else class="quantity-selector">
-            <span class="quantity">{{ quantity }}</span>
-            <div class="controls">
-              <button class="increase" @click="increaseQuantity">
-                <i class="ri-arrow-up-s-line"></i>
-              </button>
-              <button class="decrease" @click="decreaseQuantity">
-                <i class="ri-arrow-down-s-line"></i>
-              </button>
+        <p class="weight">{{ size }}</p>
+        <div class="price-container">
+          <div class="price">
+            <span class="current-price">$ {{ price }}</span>
+            <span v-if="promotionAsPercentage > 0" class="old-price">$ {{ oldPrice.toFixed(2) }}</span>
+          </div>
+          <div class="button-container">
+            <button v-if="!showQuantitySelector" @click="toggleQuantitySelector" class="add-button">
+              Add +
+            </button>
+            <div v-else class="quantity-selector">
+              <span class="quantity">{{ quantity }}</span>
+              <div class="controls">
+                <button class="increase" @click="increaseQuantity">
+                  <i class="ri-arrow-up-s-line"></i>
+                </button>
+                <button class="decrease" @click="decreaseQuantity">
+                  <i class="ri-arrow-down-s-line"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+  </router-link>
 </template>
 
 <script>
@@ -127,8 +116,14 @@ export default {
 </script>
 
 <style scoped>
+.product-link{
+  text-decoration: none; /* Remove underline for links */
+  color: inherit; /* Ensure text color stays the same */
+}
+
 .container {
   width: 250px;
+  height: 400px; /* Fixed height */
   border: 1px solid #e5e5e5;
   border-radius: 10px;
   padding: 10px;
@@ -278,14 +273,16 @@ export default {
 
 .quantity {
   text-align: center;
-  width: 25px;  /* Ensure enough space for the quantity number */
+  width: 25px;
+  /* Ensure enough space for the quantity number */
 }
 
 .controls {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0px; /* Space between the buttons */
+  gap: 0px;
+  /* Space between the buttons */
 
   position: absolute;
 }
