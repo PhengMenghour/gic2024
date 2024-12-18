@@ -1,13 +1,10 @@
 <template>
   <div :style="{ backgroundColor: color }" class="container">
-    <img :src="'http://localhost:3000/'+ image" alt="" />
+    <img :src="'http://localhost:3000/' + image" alt="" />
     <h3>{{ title }}</h3>
-    <ButtonComponent
-      @click="shopNow()"
-      id="button"
-      :buttonColor="buttonColor"
-    />
+    <ButtonComponent @click="shopNow()" id="button" :buttonColor="buttonColor" />
   </div>
+
 </template>
 
 <script>
@@ -49,9 +46,12 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
-  flex-shrink: 0; /* Prevents the image from shrinking */
-  max-width: 100%; /* Keeps image responsive */
-  width: auto; /* Maintains aspect ratio */
+  flex-shrink: 0;
+  /* Prevents the image from shrinking */
+  max-width: 100%;
+  /* Keeps image responsive */
+  width: auto;
+  /* Maintains aspect ratio */
 }
 
 .container h3 {

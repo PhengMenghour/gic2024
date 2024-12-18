@@ -6,13 +6,17 @@
         </button>
     </div>
 
+    
     <div v-if="type === 2" class="type-2">
-        <router-link :to="`/categories/${categoryId}`" class="button-link">
-            <button>
-                {{ buttonName }}
-                <i class="ri-arrow-down-s-line"></i>
-            </button>
-        </router-link>
+        <slot name="link">
+            <!-- Default behavior if no slot is provided -->
+
+                <button class="styled-button">
+                    {{ buttonName }}
+                    <i class="ri-arrow-down-s-line"></i>
+                </button>
+
+        </slot>
     </div>
 </template>
 <script>
@@ -20,15 +24,12 @@ export default {
     props: {
         type: Number,
         buttonName: String,
-        iconClass: String
+        iconClass: String,
+        categoryId: Number
     }
 }
 </script>
 <style scoped>
-.button-link{
-    text-decoration: none; /* Remove underline for links */
-    color: inherit; /* Ensure text color stays the same */
-}
 
 .type-1 button {
     background-color: transparent;
@@ -41,9 +42,25 @@ export default {
     transition: ease-in-out 0.2s;
 }
 
-.type-2 button {
+.styled-button {
+  background-color: #007bff;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.styled-button:hover {
+  background-color: #0056b3;
+}
+
+/* .type-2 button {
     background-color: transparent;
     color: #7E7E7E;
+    color: aqua;
     font-size: 14px;
     font-weight: bold;
     width: auto;
@@ -52,5 +69,5 @@ export default {
 .type-2 button:hover {
     color: #000;
     transition: ease-in-out 0.2s;
-}
+} */
 </style>

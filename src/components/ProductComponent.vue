@@ -1,5 +1,4 @@
 <template>
-  <router-link :to="`/products/${productId}`" class="product-link">
     <div class="container">
       <div v-if="badgeText" class="badge" :style="{ backgroundColor: badgeColor }">
         {{ badgeText }}
@@ -40,7 +39,6 @@
       </div>
     </div>
 
-  </router-link>
 </template>
 
 <script>

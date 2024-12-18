@@ -1,20 +1,24 @@
 <template>
     <div class="breadcrumb-banner">
       <div class="content">
-        <h1>Coke & Milk</h1>
+        <h1>{{ name }}</h1>
         <nav class="breadcrumb">
           <span><a href="/">Home</a></span>
           <span> &gt; </span>
           <span><a href="/categories">Categories</a></span>
           <span> &gt; </span>
-          <span>Coke & Milk</span>
+          <span>{{ name }}</span>
         </nav>
       </div>
     </div>
   </template>
   
   <script>
-  export default {};
+  export default {
+    props: {
+      name: String,
+    }
+  };
   </script>
   
   <style scoped>

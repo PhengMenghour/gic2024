@@ -22,6 +22,7 @@ export default {
     name: String,
     productCount: Number,
     color: String,
+    categoryId: Number,
   },
 };
 </script>

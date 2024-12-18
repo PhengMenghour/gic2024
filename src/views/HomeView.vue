@@ -8,12 +8,15 @@
   </div>
 
   <div class="row-1">
-    <CategoryComponent v-for="category in categories" :key="category.id" :image="category.image" :name="category.name"
+    <CategoryComponent v-for="category in categories" :key="category.id" 
+      :category-id="category.id"
+      :image="category.image" :name="category.name"
       :productCount="category.productCount" :color="category.color" />
   </div>
   <div class="row-2">
     <PromotionComponent v-for="promotion in promotions" :key="promotion.id" :color="promotion.color"
-      :title="promotion.title" :image="promotion.image" :buttonColor="promotion.buttonColor" />
+      :title="promotion.title" :image="promotion.image" :buttonColor="promotion.buttonColor" 
+      @click="$router.push(`/products/${promotion.id}`)"/>
   </div>
 
   <div>
@@ -25,7 +28,9 @@
     <ProductComponent v-for="product in productsByGroup" :key="product.id" :name="product.name" :rating="product.rating"
       :size="product.size" :images="product.image" :price="product.price"
       :promotionAsPercentage="product.promotionAsPercentage" :categoryId="product.categoryId" :instock="product.instock"
-      :coundSold="product.countSold" :group="product.group" />
+      :coundSold="product.countSold" :group="product.group" 
+      @click="$router.push(`/products/${product.id}`)"
+      />
   </div>
 </template>
 <script>
